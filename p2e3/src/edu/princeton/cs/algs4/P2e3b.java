@@ -7,7 +7,7 @@ public class P2e3b {
 	        int max;
 	    }
 	 
-	    static Pair getMinMax(int arr[], int low, int high) {
+	    static Pair getMinMax(int[] arr, int low, int high) {
 	        Pair minmax = new Pair();
 	        Pair mmL = new Pair();
 	        Pair mmR = new Pair();
@@ -60,7 +60,8 @@ public class P2e3b {
 	    	int[] arr = StdIn.readAllInts();
 	        Pair minmax = getMinMax(arr, 0, arr.length - 1);
 	        System.out.printf("\nMinimum element is %d", minmax.min);
-	        System.out.printf("\nMaximum element is %d", minmax.max);}
+	        System.out.printf("\nMaximum element is %d", minmax.max);
+	        System.out.println();}
 			catch (NumberFormatException ex) {System.out.println("");}
 	 
 			try {
