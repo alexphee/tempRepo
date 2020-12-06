@@ -9,8 +9,8 @@ public class P2e3b {
 	 
 	    static Pair getMinMax(int arr[], int low, int high) {
 	        Pair minmax = new Pair();
-	        Pair mml = new Pair();
-	        Pair mmr = new Pair();
+	        Pair mmL = new Pair();
+	        Pair mmR = new Pair();
 	        int mid;
 	 
 	        // If there is only one element 
@@ -34,21 +34,21 @@ public class P2e3b {
 	 
 	        /* If there are more than 2 elements */
 	        mid = (low + high) / 2;
-	        mml = getMinMax(arr, low, mid);
-	        mmr = getMinMax(arr, mid + 1, high);
+	        mmL = getMinMax(arr, low, mid);
+	        mmR = getMinMax(arr, mid + 1, high);
 	 
 	        /* compare minimums of two parts*/
-	        if (mml.min < mmr.min) {
-	            minmax.min = mml.min;
+	        if (mmL.min < mmR.min) {
+	            minmax.min = mmL.min;
 	        } else {
-	            minmax.min = mmr.min;
+	            minmax.min = mmR.min;
 	        }
 	 
 	        /* compare maximums of two parts*/
-	        if (mml.max > mmr.max) {
-	            minmax.max = mml.max;
+	        if (mmL.max > mmR.max) {
+	            minmax.max = mmL.max;
 	        } else {
-	            minmax.max = mmr.max;
+	            minmax.max = mmR.max;
 	        }
 	        
 	        return minmax;
