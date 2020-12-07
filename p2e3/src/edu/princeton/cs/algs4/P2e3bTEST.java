@@ -1,75 +1,52 @@
 package edu.princeton.cs.algs4;
 
+import edu.princeton.cs.algs4.P2e3b.Pair;
+
 public class P2e3bTEST {
-	 static class Pair {
-		 
-	        int min;
-	        int max;
+	static int[] getMinMax(int A[], int start, int end){
+	    int max;
+	    int min;
+	    if ( start == end )
+	    {
+	        max = A[start];
+	        min = A[start];
 	    }
-	 
-	    static Pair getMinMax(int[] arr, int low, int high) {
-	        Pair minmax = new Pair();
-	        Pair mmL = new Pair();
-	        Pair mmR = new Pair();
-	        int mid;
-	 
-	        // If there is only one element 
-	        if (low == high) {
-	            minmax.max = arr[low];
-	            minmax.min = arr[low];
-	            return minmax;
+	    else if ( start + 1 == end )
+	    {
+	        if ( A[start] < A[end] )
+	        {
+	            max = A[end];
+	            min = A[start];
 	        }
-	 
-	        /* If there are two elements */
-	        if (high == low + 1) {
-	            if (arr[low] > arr[high]) {
-	                minmax.max = arr[low];
-	                minmax.min = arr[high];
-	            } else {
-	                minmax.max = arr[high];
-	                minmax.min = arr[low];
-	            }
-	            return minmax;
+	        else
+	        {
+	            max = A[start];
+	            min = A[end];
 	        }
-	 
-	        /* If there are more than 2 elements */
-	        mid = (low + high) / 2;
-	        mmL = getMinMax(arr, low, mid);
-	        mmR = getMinMax(arr, mid + 1, high);
-	 
-	        /* compare minimums of two parts*/
-	        if (mmL.min < mmR.min) {
-	            minmax.min = mmL.min;
-	        } else {
-	            minmax.min = mmR.min;
-	        }
-	 
-	        /* compare maximums of two parts*/
-	        if (mmL.max > mmR.max) {
-	            minmax.max = mmL.max;
-	        } else {
-	            minmax.max = mmR.max;
-	        }
-	        
-	        return minmax;
 	    }
-	 
-	    /* Driver program to test above function */
-	    public static void main(String args[]) {
-			try {
-	    	int[] arr = StdIn.readAllInts();
-	        Pair minmax = getMinMax(arr, 0, arr.length - 1);
-	        System.out.printf("\nMinimum element is %d", minmax.min);
-	        System.out.printf("\nMaximum element is %d", minmax.max);
-	        System.out.println();}
-			catch (NumberFormatException ex) {System.out.println("");}
-	 
-			try {
-		    	String[] arr = StdIn.readAllStrings();
-		    	System.out.println("String");}
-//		        Pair minmax = getMinMax(arr, 0, arr.length - 1);
-//		        System.out.printf("\nMinimum element is %d", minmax.min);
-//		        System.out.printf("\nMaximum element is %d", minmax.max);}
-				catch (NumberFormatException ex) {System.out.println("");}
+	    else
+	    {
+	        int mid = start + (end - start)/2;
+	        int left[] = getMinMax(A, start, mid);
+	        int right[] = getMinMax(A, mid+1, end);
+	        if ( left[0] > right[0] )
+	            max = left[0];
+	        else
+	            max = right[0];
+	        if ( left[1] < right[1] )
+	            min = left[1];
+	        else
+	            min = right[1];
 	    }
+	    int ans[] = {max, min};
+	   
+	   return ans;
+	}
+	public static void main(String args[]) {
+	int[] arr = StdIn.readAllInts();
+    int[] minmax = getMinMax(arr, 0, arr.length - 1);
+    
+    StdOut.println("Min element is "+minmax[1]);
+    StdOut.println("Max element is "+minmax[0]);
+	}
 }
