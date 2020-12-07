@@ -1,6 +1,6 @@
 package edu.princeton.cs.algs4;
 
-public class P2e3b {
+public class P2e3bTEST {
 	 static class Pair {
 		 
 	        int min;
@@ -51,8 +51,6 @@ public class P2e3b {
 	            minmax.max = mmR.max;
 	        }
 	        
-	        StdOut.println(mmL);
-	        StdOut.println(mmR);
 	        return minmax;
 	    }
 	 
@@ -61,13 +59,9 @@ public class P2e3b {
 			try {
 	    	int[] arr = StdIn.readAllInts();
 	        Pair minmax = getMinMax(arr, 0, arr.length - 1);
-	        for (int i = 0; i < arr.length; i++) {
-		           StdOut.print(arr[i]+" ");
-		       }
-			StdOut.println(" ");
 	        System.out.printf("\nMinimum element is %d", minmax.min);
 	        System.out.printf("\nMaximum element is %d", minmax.max);
-	        StdOut.println(" ");}
+	        System.out.println();}
 			catch (NumberFormatException ex) {System.out.println("");}
 	 
 			try {
