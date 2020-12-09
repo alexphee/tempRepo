@@ -1,0 +1,6 @@
+Project_2, Exercise_3a : P2e3a
+
+Original array:
+r y r g h w b d y u z s f h j  
+Min element is b
+Max element is z

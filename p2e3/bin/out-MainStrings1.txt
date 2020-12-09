@@ -1,0 +1,18 @@
+max 	 min
+y 	 r
+r 	 g
+y 	 g
+w 	 h
+d 	 b
+w 	 b
+y 	 b
+y 	 u
+z 	 s
+z 	 s
+h 	 f
+j 	 j
+j 	 f
+z 	 f
+z 	 b
+Min element :b
+Max element :z

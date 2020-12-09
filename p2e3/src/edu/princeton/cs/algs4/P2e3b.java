@@ -1,50 +1,54 @@
+/******************************************************************************
+ *  Compilation:  	javac P2e3b.java
+ *  Execution:   	java edu.princeton.cs.algs4.MainStrings <in-MainInts1.txt
+ *  Dependencies: 	StdIn.java StdOut.java Quick.java StdRandom.java
+ *  Data files: 	in-MainDoubles1.txt, in-IntsDoubles1.txt, in-MainStrings1.txt  
+ *
+ ******************************************************************************/
 package edu.princeton.cs.algs4;
 
+import java.lang.reflect.Array;
+
 public class P2e3b {
-	static int[] getMinMax(int A[], int start, int end){
-	    int max;
-	    int min;
-	    if ( start == end )
-	    {
-	        max = A[start];
-	        min = A[start];
-	    }
-	    else if ( start + 1 == end )
-	    {
-	        if ( A[start] < A[end] )
-	        {
-	            max = A[end];
-	            min = A[start];
-	        }
-	        else
-	        {
-	            max = A[start];
-	            min = A[end];
-	        }
-	    }
-	    else
-	    {
-	        int mid = start + (end - start)/2;
-	        int left[] = getMinMax(A, start, mid);
-	        int right[] = getMinMax(A, mid+1, end);
-	        if ( left[0] > right[0] )
-	            max = left[0];
-	        else
-	            max = right[0];
-	        if ( left[1] < right[1] )
-	            min = left[1];
-	        else
-	            min = right[1];
-	    }
-	    int ans[] = {max, min};
-	   
-	   return ans;
-	}
-	public static void main(String args[]) {
-	int[] arr = StdIn.readAllInts();
-    int[] minmax = getMinMax(arr, 0, arr.length - 1);
-    
-    StdOut.println("Min element is "+minmax[1]);
-    StdOut.println("Max element is "+minmax[0]);
+	public static <E extends Comparable<? super E>> E[] getMinMax(E[] inputArray, int start,
+			int end) {
+		E max;
+		E min;
+		String[] maximums;
+		String[] minimums;
+		
+		if (start == end) {
+			max = inputArray[start];
+			min = inputArray[start];
+		} else if (start + 1 == end) {
+			if (inputArray[start].compareTo(inputArray[end]) < 0) {
+				max = inputArray[end];
+				min = inputArray[start];
+			} else {
+				max = inputArray[start];
+				min = inputArray[end];
+			}
+		} else {
+			int mid = start + (end - start) / 2;
+			E[] left = getMinMax(inputArray, start, mid);
+			E[] right = getMinMax(inputArray, mid + 1, end);
+
+			if (left[0].compareTo(right[0]) > 0)
+				max = left[0];
+			else
+				max = right[0];
+			if (left[1].compareTo(right[1]) < 0)
+				min = left[1];
+			else
+				min = right[1];
+		}
+		
+		StdOut.println(max + " \t " + min);
+
+		E[] test = (E[]) Array.newInstance(inputArray.getClass().getComponentType(), 2);
+		test[0] = max;
+		test[1] = min;
+
+		return test;
 	}
 }

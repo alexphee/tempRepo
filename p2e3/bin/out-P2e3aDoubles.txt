@@ -1,0 +1,6 @@
+Project_2, Exercise_3a : P2e3a
+
+Original array:
+2.0 4.2 4.7 8.9 9.8 4.6 1.2  
+Min element is 1.2
+Max element is 9.8
